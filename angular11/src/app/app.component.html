@@ -1,0 +1,51 @@
+<div style="text-align:center">
+  <a routerLink="/productos">Productos</a>
+  <div style="border: 1px solid red">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<div>
+  <h1 align="center">Administración de productos</h1>
+    <table class="table" border="0.5" *ngIf="hayRegistros(); else sinproductos">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Seleccionar</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of lista">
+        <td scope="row">{{producto.id}}</td>
+        <td scope="row">{{producto.nombre}}</td>
+        <td scope="row">{{producto.tipo}}</td>
+        <td scope="row">{{producto.precio}}</td>
+        <td scope="row">{{producto.cantidad}}</td>
+        <td scope="row"><button class="btn btn-danger" (click)="eliminar(producto.id)" >Borrar</button></td>
+        <td scope="row"><button class="btn btn-secondary" (click)="mostrar(producto.id)">Seleccionar</button></td>
+      </tr>
+    </tbody>
+    </table>
+    <ng-template #sinproductos><p>No hay productos</p></ng-template>
+    <div>
+      <h1>Datos</h1>
+      <p>
+        Nombre:<input type="text" [(ngModel)]="prod.nombre" />
+      </p>
+      <p>
+        Tipo:<input type="text" [(ngModel)]="prod.tipo" />
+      </p>
+      <p>
+        Precio:<input type="number" [(ngModel)]="prod.precio" />
+      </p>            
+      <p>
+        Cantidad:<input type="text" [(ngModel)]="prod.cantidad" />
+      </p>
+      <p><button class="btn btn-success"(click)="nuevo()">Agregar</button>
+      <button class="btn btn-primary"(click)="actualizar()">Modificar</button></p>
+    </div>
+</div>
