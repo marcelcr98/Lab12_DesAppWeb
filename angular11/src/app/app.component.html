@@ -34,18 +34,38 @@
     <div>
       <h1>Datos</h1>
       <p>
-        Nombre:<input type="text" [(ngModel)]="prod.nombre" />
+        Nombre:<input  class="form-control" type="text" [(ngModel)]="prod.nombre" />
       </p>
       <p>
-        Tipo:<input type="text" [(ngModel)]="prod.tipo" />
+        Tipo:<input  class="form-control" type="text" [(ngModel)]="prod.tipo" />
       </p>
       <p>
-        Precio:<input type="number" [(ngModel)]="prod.precio" />
+        Precio:<input class="form-control" type="number" [(ngModel)]="prod.precio" />
       </p>            
       <p>
-        Cantidad:<input type="text" [(ngModel)]="prod.cantidad" />
+        Cantidad:<input class="form-control" type="text" [(ngModel)]="prod.cantidad" />
       </p>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text upload" (click)="upload()" id="btnUpload">
+            Upload
+          </span>
+        </div>
+        <div class="custom-file">
+          <form action="/api/upload" method="post" enctype="multipart/form-data">
+            <input (change)="fileChange($event)"
+                   type="file" class="custom-file-input" id="inputGroupFile01"
+                   aria-describedby="inputGroupFileAddon01">
+          </form>
+          <label class="custom-file-label" for="inputGroupFile01">
+             Choose file
+          </label>
+        </div>
+      </div>
+      <br>
       <p><button class="btn btn-success"(click)="nuevo()">Agregar</button>
       <button class="btn btn-primary"(click)="actualizar()">Modificar</button></p>
     </div>
+
+   
 </div>

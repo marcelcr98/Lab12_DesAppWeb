@@ -8,6 +8,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProductosService } from './services/productos.service';
+import { UploadService } from './services/upload.service';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { ProductosService } from './services/productos.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ProductosService],
+  providers: [ProductosService,UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
