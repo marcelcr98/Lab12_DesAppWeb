@@ -26,7 +26,7 @@
         <td scope="row">{{producto.tipo}}</td>
         <td scope="row">{{producto.precio}}</td>
         <td scope="row">{{producto.cantidad}}</td>
-        <td><img src="http://localhost:3000/images/{{producto.nombrearchivo}}" height="50px" alt=""></td>
+        <td><img src="http://localhost:3000/images/{{producto.nombre_archivo}}" height="50px" alt=""></td>
         <td scope="row"><button class="btn btn-danger" (click)="eliminar(producto.id)" >Borrar</button></td>
         <td scope="row"><button class="btn btn-secondary" (click)="mostrar(producto.id)">Seleccionar</button></td>
       </tr>
@@ -47,20 +47,22 @@
       <p>
         Cantidad:<input class="form-control" type="text" [(ngModel)]="prod.cantidad" />
       </p>
-      <div class="input-group">
+     
+      
+      <div class="input-group" style="margin: 7px;">
         <div class="input-group-prepend">
           <span class="input-group-text upload" (click)="upload()" id="btnUpload">
-            Cargarlo
+            Subir
           </span>
         </div>
         <div class="custom-file">
-          <form action="/api/upload" method="post" enctype="multipart/form-data">
+          <form action="/productos/" method="post" enctype="multipart/form-data">
             <input (change)="fileChange($event)"
                    type="file" class="custom-file-input" id="inputGroupFile01"
                    aria-describedby="inputGroupFileAddon01">
           </form>
           <label class="custom-file-label" for="inputGroupFile01">
-             Seleccionar imagen
+             Escoger Archivo
           </label>
         </div>
       </div>
