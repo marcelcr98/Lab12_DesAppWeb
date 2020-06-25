@@ -9,6 +9,7 @@ import { UploadService } from './services/upload.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  uploadedFiles: Array <File>;
   title = 'Lab11';
   lista=null;
   prod: any = {
@@ -76,14 +77,8 @@ export class AppComponent {
     cantidad:null
     };
   }
-
-
-
   
-
-  uploadedFiles: Array < File > ;
-   
-  fileChange(element) {
+ fileChange(element) {
     console.log('fileChangexx');
     this.uploadedFiles = element.target.files;
   }
@@ -96,7 +91,7 @@ export class AppComponent {
       console.log('Inicio FOR');
       // formData.append("file[]",this.uploadedFiles[0]);
       formData.append("file",
-	    this.uploadedFiles[i],
+      this.uploadedFiles[i],
       this.uploadedFiles[i].name);
 
     }

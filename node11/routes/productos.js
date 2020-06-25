@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+//
+var multiparty = require('connect-multiparty');
+var multipartMiddleware =multiparty();
 let controller = require('../controllers/productoController');
 
 // WS listar registros
@@ -13,7 +16,7 @@ router.get('/mostrar/:id', function(req, res, next) {
 });
 
 // WS crear registro
-router.post('/', function(req, res){
+router.post('/', multipartMiddleware, function(req, res){
   controller.store(req, res);
 });
 

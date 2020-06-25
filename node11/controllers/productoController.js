@@ -1,4 +1,5 @@
 let db = require('../models/dbconexion');
+var fs = require('fs');
 
 let productos = {
   listar( req, res ){
@@ -13,17 +14,39 @@ let productos = {
     });
   },
   store( req, res ){
+    
+    var file = req.files.file;
+    var tmp_path = file.path;
+    var target_path = './public/images/' + file.name;
+    console.log(target_path);
+    console.log(file.name);
+    let nombrearchivo = file.name;
+    let rutaarchivo = target_path;
+
+    fs.copyFile(tmp_path,target_path,function(err)
+    {
+        if (err) throw err;        
+        fs.unlink(tmp_path, function() {
+          if (err) throw err;
+          res.status(200).send('File uploaded to: ' + target_path);          
+        });
+            
+    });
+
     val_nombre = req.body.nombre;
     val_tipo = req.body.tipo;
     val_precio = req.body.precio;
     val_cantidad = req.body.cantidad;
-    let sql = "INSERT INTO tienda(nombre,tipo,precio,cantidad) VALUES(?,?,?,?)";
-    db.query(sql,[val_nombre,val_tipo,val_precio,val_cantidad],function(err, newData){
+    //
+    //val_nombrearchivo = req.body.nombrearchivo;
+    //val_rutaarchivo = req.body.rutaarchivo;
+    let sql = "INSERT INTO tienda(nombre,tipo,precio,cantidad,nombrearchivo,rutaarchivo) VALUES(?,?,?,?,?,?)";
+    db.query(sql,[val_nombre,val_tipo,val_precio,val_cantidad,nombrearchivo,rutaarchivo],function(err, newData){
       if(err){
         console.log(err);
         res.sendStatus(500);
       }else{
-        res.json(newData);
+        //res.json(newData);
       }
     });
   },

@@ -14,6 +14,7 @@
         <th scope="col">Tipo</th>
         <th scope="col">Precio</th>
         <th scope="col">Cantidad</th>
+        <th scope="col">Imagen</th>
         <th scope="col">Seleccionar</th>
         <th scope="col"></th>
       </tr>
@@ -25,6 +26,7 @@
         <td scope="row">{{producto.tipo}}</td>
         <td scope="row">{{producto.precio}}</td>
         <td scope="row">{{producto.cantidad}}</td>
+        <td><img src="http://localhost:3000/images/{{producto.nombrearchivo}}" height="50px" alt=""></td>
         <td scope="row"><button class="btn btn-danger" (click)="eliminar(producto.id)" >Borrar</button></td>
         <td scope="row"><button class="btn btn-secondary" (click)="mostrar(producto.id)">Seleccionar</button></td>
       </tr>
@@ -48,7 +50,7 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text upload" (click)="upload()" id="btnUpload">
-            Upload
+            Cargarlo
           </span>
         </div>
         <div class="custom-file">
@@ -58,7 +60,7 @@
                    aria-describedby="inputGroupFileAddon01">
           </form>
           <label class="custom-file-label" for="inputGroupFile01">
-             Choose file
+             Seleccionar imagen
           </label>
         </div>
       </div>
